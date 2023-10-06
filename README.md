@@ -1,6 +1,8 @@
 # NASA - sonification of Hubble flyby videos
 
-Requirements:
+Demo: https://nasa.codeawareness.com/
+
+Local dev requirements:
 
 1. Install nginx
 
