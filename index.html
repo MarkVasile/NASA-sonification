@@ -1,0 +1,50 @@
+<html>
+<head>
+  <title>Motion Detection</title>
+  <script src="./diff-cam-engine.js"></script>
+</head>
+
+<body>
+  <h1>Nebula video motion detector</h1>
+  <video id="nebula">
+  <source src="./videos/nebula.mp4" type="video/mp4" />
+  </video>
+</body>
+
+  <script>
+    const video = document.getElementById('nebula')
+
+    DiffCamEngine.init({
+      video: document.getElementById('nebula'),
+      captureIntervalTime: 50,
+      captureCallback: processFrame,
+      initSuccessCallback: videoReady,
+      diffWidth: 120,
+      diffHeight: 72,
+      motionCanvas: debugMotion(),
+    })
+
+    function videoReady() {
+      video.addEventListener('click', () => {
+        DiffCamEngine.start()
+        video.play()
+      })
+    }
+
+    function processFrame(data) {
+      if (data.hasMotion) console.log(data)
+    }
+
+    function debugDiffs() {
+      const diffCanvas = document.createElement('canvas')
+      document.body.appendChild(diffCanvas)
+      return diffCanvas
+    }
+
+    function debugMotion() {
+      motionCanvas = document.createElement('canvas')
+      document.body.appendChild(motionCanvas)
+      return motionCanvas
+    }
+  </script>
+</html>
