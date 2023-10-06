@@ -1,6 +1,8 @@
 <html>
 <head>
   <title>Motion Detection</title>
+  <script src="https://cdn.jsdelivr.net/gh/chaosprint/glicol@v0.12.12/js/src/glicol.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/chaosprint/hydra-synth/dist/hydra-synth.min.js"></script>
   <script src="./diff-cam-engine.js"></script>
 </head>
 
@@ -28,6 +30,28 @@
       video.addEventListener('click', () => {
         DiffCamEngine.start()
         video.play()
+
+        // glicol code here:
+        window.code = `
+// edited based on the version proposed by @bwagner
+// https://github.com/chaosprint/glicol/discussions/42
+~seq: speed ##400/120# >> seq 40 43 45 43 50 48 50 ~a
+
+// try to add one or more 0 after 52 and update
+~a: choose 52
+
+~tri: ~seq >> envperc 0.01 0.09
+
+~pitch: ~seq >> mul 261
+
+lead: squ ~pitch >> mul ~tri
+>> lpf ~mod 1.0
+>> mul 0.5
+>> plate 0.1
+
+~mod: sin 0.2 >> mul 1200 >> add 1500
+`
+        window.run(window.code)
       })
     }
 
