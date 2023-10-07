@@ -42,7 +42,7 @@ var DiffCamEngine = (function() {
 		diffHeight = options.diffHeight || 48;
 		pixelDiffThreshold = options.pixelDiffThreshold || 32;
 		scoreThreshold = options.scoreThreshold || 16;
-		includeMotionBox = options.includeMotionBox || true;
+		includeMotionBox = options.includeMotionBox || false;
 		includeMotionPixels = options.includeMotionPixels || true;
 
 		// callbacks

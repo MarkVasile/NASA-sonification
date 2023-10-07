@@ -21,8 +21,8 @@
       captureIntervalTime: 50,
       captureCallback: processFrame,
       initSuccessCallback: videoReady,
-      diffWidth: 120,
-      diffHeight: 72,
+      diffWidth: 480,
+      diffHeight: 288,
       motionCanvas: debugMotion(),
     })
 
@@ -44,6 +44,8 @@
 
 ~pitch: ~seq >> mul 261
 
+o: noiz 42 >> lpf 100.0 1.0
+
 lead: squ ~pitch >> mul ~tri
 >> lpf ~mod 1.0
 >> mul 0.5
@@ -51,7 +53,7 @@ lead: squ ~pitch >> mul ~tri
 
 ~mod: sin 0.2 >> mul 1200 >> add 1500
 `
-        window.run(window.code)
+        // window.run(window.code)
       })
     }
 
